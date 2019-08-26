@@ -5,4 +5,6 @@
 enum class ExceptionType : u16
 {
     None,
+    AppPathError,
+    
 };
