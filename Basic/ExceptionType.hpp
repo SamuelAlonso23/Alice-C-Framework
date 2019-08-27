@@ -6,5 +6,10 @@ enum class ExceptionType : u16
 {
     None,
     AppPathError,
+    CpuIdNotSupported,
+    IndexOverflow,
+    IsReadOnly,
+    OperationWithoutSuccess,
+    FromIsGreaterThanTo,
     
 };
