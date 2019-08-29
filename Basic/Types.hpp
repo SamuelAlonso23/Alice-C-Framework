@@ -1,7 +1,11 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
 #include <cstdint>
+#include <cstddef>
 
+typedef decltype(nullptr) NullPtr;
+typedef std::ptrdiff_t PtrDiff;
+typedef std::byte byte;
 typedef std::uint8_t u8;
 typedef std::int8_t s8;
 typedef std::uint16_t u16;
