@@ -5,22 +5,24 @@ namespace Alice
 {
     namespace Concepts
     {
-        template<class T> class RemoveReferences
+        template<class T> class RemoveReferencesClass
         {
         public:
             typedef T Type;
         };
 
-        template<class T> class RemoveReferences<T&>
+        template<class T> class RemoveReferencesClass<T&>
         {
         public:
             typedef T Type;
         };
 
-        template<class T> class RemoveReferences<T&&>
+        template<class T> class RemoveReferencesClass<T&&>
         {
         public:
             typedef T Type;
         };
+
+        template<class T> using RemoveReferences = typename RemoveReferencesClass<T>::Type;
     }
 }

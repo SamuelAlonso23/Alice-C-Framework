@@ -5,16 +5,18 @@ namespace Alice
 {
     namespace Concepts
     {
-        template<class T> class IsConst
+        template<class T> class IsConstClass
         {
         public:
             constexpr static bool Value = false;
         };
 
-        template<class T> class IsConst<const T>
+        template<class T> class IsConstClass<const T>
         {
         public:
             constexpr static bool Value = true;
         };
+
+        template<typename T> constexpr bool IsConst = IsConstClass<T>::Value;
     }
 }

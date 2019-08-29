@@ -5,12 +5,14 @@ namespace Alice
 {
     namespace Concepts
     {
-        template<bool Enable, class T = void> class EnableIf{};
+        template<bool Enable, class T = void> class EnableIfClass{};
 
-        template<class T> class EnableIf<true, T>
+        template<class T> class EnableIfClass<true, T>
         {
         public:
             typedef T Type;
         };
+
+        template<bool Enable, class T = void> using EnableIf = typename EnableIfClass<Enable, T>::Type;
     }
 }

@@ -5,18 +5,18 @@ namespace Alice
 {
     namespace Concepts
     {
-        template<class T> class IsVolatileClass
+        template<class T> class IsArrayClass
         {
         public:
             constexpr static bool Value = false;
         };
 
-        template<class T> class IsVolatileClass<volatile T>
+        template<class T> class IsArrayClass<T[]>
         {
         public:
             constexpr static bool Value = true;
         };
 
-        template<class T> constexpr bool IsVolatile = IsVolatileClass<T>::Value;
+        template<class T> constexpr bool IsArray = IsArrayClass<T>::Value;
     }
 }
