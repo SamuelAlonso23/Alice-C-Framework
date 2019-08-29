@@ -1,6 +1,5 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Basic\Inline.hpp>
 #include <Concepts\IsSame.hpp>
 #include <Concepts\RemoveConst.hpp>
 #include <Concepts\RemoveVolatile.hpp>
@@ -9,32 +8,36 @@ namespace Alice
 {
     namespace Concepts
     {
-        template<class T> AliceInline constexpr bool IsPureVoidFunc() noexcept
+        template<class T> class IsPureVoidClass
         {
-            return IsSame<T, void>;
-        }
+        public:
+            constexpr static bool Value = IsSame<T, void>;
+        };
 
-        template<class T> AliceInline constexpr bool IsConstVoidFunc() noexcept
+        template<class T> class IsConstVoidClass
         {
-            return IsSame<RemoveConst<T>, void>;
-        }
+        public:
+            constexpr static bool Value = IsSame<RemoveConst<T>, void>;
+        };
 
-        template<class T> AliceInline constexpr bool IsVolatileVoidFunc() noexcept
+        template<class T> class IsVolatileVoidClass
         {
-            return IsSame<RemoveVolatile<T>, void>;
-        }
+        public:
+            constexpr static bool Value = IsSame<RemoveVolatile<T>, void>;
+        };
 
-        template<class T> AliceInline constexpr bool IsVoidFunc() noexcept
+        template<class T> class IsVoidClass
         {
-            return IsSame<RemoveConst<RemoveVolatile<T>>, void>;
-        }
+        public:
+            constexpr static bool Value = IsSame<RemoveConst<RemoveVolatile<T>>, void>;
+        };
 
-        template<class T> constexpr bool IsPureVoid = IsPureVoidFunc<T>();
+        template<class T> constexpr bool IsPureVoid = IsPureVoidClass<T>::Value;
 
-        template<class T> constexpr bool IsConstVoid = IsConstVoidFunc<T>();
+        template<class T> constexpr bool IsConstVoid = IsConstVoidClass<T>::Value;
 
-        template<class T> constexpr bool IsVolatileVoid = IsVolatileVoidFunc<T>();
+        template<class T> constexpr bool IsVolatileVoid = IsVolatileVoidClass<T>::Value;
 
-        template<class T> constexpr bool IsVoid = IsVoidFunc<T>();
+        template<class T> constexpr bool IsVoid = IsVoidClass<T>::Value;
     }
 }
