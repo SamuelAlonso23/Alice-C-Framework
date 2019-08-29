@@ -2,7 +2,7 @@
 #include <Concepts\EnableIf.hpp>
 
 //Return type is f32
-Alice::Concepts::EnableIf<true, f32>::Type foo()
+Alice::Concepts::EnableIf<true, f32> foo()
 {
     return 9.8f;
 }
