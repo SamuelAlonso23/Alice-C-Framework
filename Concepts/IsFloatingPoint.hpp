@@ -6,24 +6,24 @@ namespace Alice
 {
     namespace Concepts
     {
-        template<class T> class IsArrayClass
+        template<class T> class IsFloatingPointClass
         {
         public:
             constexpr static bool Value = false;
         };
 
-        template<class T> class IsArrayClass<T[]>
+        template<> class IsFloatingPointClass<f32>
         {
         public:
             constexpr static bool Value = true;
         };
 
-        template<class T, u32 Size> class IsArrayClass<T[Size]>
+        template<> class IsFloatingPointClass<f64>
         {
         public:
             constexpr static bool Value = true;
         };
 
-        template<class T> constexpr bool IsArray = IsArrayClass<T>::Value;
+        template<class T> constexpr bool IsFloatingPoint = IsFloatingPointClass<T>::Value;
     }
 }

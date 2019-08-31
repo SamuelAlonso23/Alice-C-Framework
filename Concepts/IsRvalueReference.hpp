@@ -8,12 +8,12 @@ namespace Alice
 {
     namespace Concepts
     {
-        template<class T> class IsVoidClass
+        template<class T> class IsRvalueReferenceClass
         {
         public:
-            constexpr static bool Value = IsSame<RemoveConst<RemoveVolatile<T>>, void>;
+            constexpr static bool Value = IsSame<T&&, RemoveConst<RemoveVolatile<T>>>;
         };
 
-        template<class T> constexpr bool IsVoid = IsVoidClass<T>::Value;
+        template<class T> constexpr bool IsRvalueReference = IsRvalueReferenceClass<T>::Value;
     }
 }
