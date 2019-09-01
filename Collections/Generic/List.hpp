@@ -1,5 +1,6 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
+#include <Core\Forward.hpp>
 #include <Core\Exception.hpp>
 
 namespace Alice
@@ -20,7 +21,20 @@ namespace Alice
                 AliceInline List() noexcept{}
 
                 AliceInline List(u64 Capacity) noexcept : Pointer(new T[Capacity]), capacity(Capacity){}
-            
+
+                AliceInline List(List<T>& Other, u64 Capacity, bool DeleteOther = false) noexcept : Pointer(new T[Capacity]), capacity(Capacity)
+                {
+                    for(u64 i = 0; i < (Other.capacity < Capacity ? Other.capacity : Capacity); i++)
+                        Pointer[i] = Alice::Forward<T>(Other[i]);
+                    if(DeleteOther)
+                        Other.~List();
+                }
+
+                AliceInline List(List<T>&& Other) noexcept : Pointer(Other.Pointer), capacity(Other.capacity)
+                {
+                    Other.Pointer = nullptr;
+                }
+
                 AliceInline T operator[](u64 id) const noexcept
                 {
                     if(id >= capacity)
@@ -74,17 +88,20 @@ namespace Alice
 
                 AliceInline void Resize(u64 NewSize) noexcept
                 {
-                    if(!readonly)
+                    if(NewSize != capacity)
                     {
-                        T* NewList = new T[NewSize];
-                        for(u64 i = 0; i < (capacity < NewSize ? capacity : NewSize); i++)
-                            NewList[i] = Pointer[i];
-                        delete[] Pointer;
-                        Pointer = NewList;
-                        capacity = NewSize;
+                        if(!readonly)
+                        {
+                            T* NewList = new T[NewSize];
+                            for(u64 i = 0; i < (capacity < NewSize ? capacity : NewSize); i++)
+                                NewList[i] = Alice::Forward<T>(Pointer[i]);
+                            delete[] Pointer;
+                            Pointer = NewList;
+                            capacity = NewSize;
+                        }
+                        else
+                            Exception::Raise(ExceptionType::IsReadOnly);
                     }
-                    else
-                        Exception::Raise(ExceptionType::IsReadOnly);
                 }
             };
         }
