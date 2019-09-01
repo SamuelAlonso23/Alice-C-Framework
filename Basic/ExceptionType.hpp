@@ -12,5 +12,14 @@ enum class ExceptionType : u16
     IsReadOnly,
     OperationWithoutSuccess,
     FromIsGreaterThanTo,
+    FileDoNotExists,
+    FileIsAFolder,
+    FileHandlerCouldNotBeCreated,
+    FileSizeCouldNotBeExtracted,
+    FileAlreadyExists,
+    FileCouldNotBeCreated,
+    FileCouldNotBeDeleted,
+    FileCouldNotBeReaded,
+    FileCouldNotBeWritten,
     
 };
