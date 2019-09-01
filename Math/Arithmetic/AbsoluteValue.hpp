@@ -4,11 +4,9 @@
 #include <Basic\Inline.hpp>
 #include <Configuration.hpp>
 #if defined(AliceSse)
-f32 AliceAbsoluteValueZero = 0;
 #include <xmmintrin.h>
 #endif
 #if defined(AliceSse2)
-f64 AliceAbsoluteValueZero64 = 0;
 #include <emmintrin.h>
 #endif
 
@@ -26,16 +24,10 @@ namespace Alice
             template<> AliceInline f32 AbsoluteValue<f32>(f32 a) noexcept
             {
                 #if defined(AliceSse)
-                __m128 aa, bb;
+                const __m128 b = _mm_castsi128_ps(_mm_set1_epi32(0x7fffffff));
+                __m128 aa;
                 aa[0] = a;
-                bb[0] = -Epsilon32;
-                if(_mm_comile_ss(aa, bb))
-                {
-                    bb[0] = AliceAbsoluteValueZero;
-                    return _mm_xor_ps(aa, bb)[0];
-                }
-                else
-                    return a;
+                return _mm_and_ps(aa, b)[0];
                 #else
                 return a <= -Epsilon32 ? -a : a;
                 #endif
@@ -44,16 +36,10 @@ namespace Alice
             template<> AliceInline f64 AbsoluteValue<f64>(f64 a) noexcept
             {
                 #if defined(AliceSse2)
-                __m128d aa, bb;
+                const __m128d b = _mm_castsi128_ps(_mm_set1_epi64x(0x7fffffffffffffff));
+                __m128d aa;
                 aa[0] = a;
-                bb[0] = -Epsilon64;
-                if(_mm_comile_sd(aa, bb))
-                {
-                    bb[0] = AliceAbsoluteValueZero64;
-                    return _mm_xor_pd(aa, bb)[0];
-                }
-                else
-                    return a;
+                return _mm_and_pd(aa, b)[0];
                 #else
                 return a <= -Epsilon64 ? -a : a;
                 #endif
