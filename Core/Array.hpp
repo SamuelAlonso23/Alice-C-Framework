@@ -19,9 +19,9 @@ namespace Alice
             return static_cast<To>(f);
         }
     public:
-        template<typename ...U> AliceInline Array(U&&... initial) noexcept : arr{Forward<T>(UglyButNecessaryCast<typename Concepts::EnableIf<Concepts::IsSame<U, T>::Value, U>::Type, T>(initial))...}{}
+        template<typename ...U> AliceInline Array(U&&... initial) noexcept : arr{Forward<T>(UglyButNecessaryCast<typename Concepts::EnableIf<Concepts::IsSame<U, T>, U>, T>(initial))...}{}
 
-        AliceInline T operator[](const u64 id) const noexcept
+        AliceInline T operator[](u64 id) const noexcept
         {
             if(id >= size)
             {
@@ -32,7 +32,7 @@ namespace Alice
                 return arr[id];
         }
 
-        AliceInline T& operator[](const u64 id) noexcept
+        AliceInline T& operator[](u64 id) noexcept
         {
             if(readonly)
                 Exception::Raise(ExceptionType::IsReadOnly);
