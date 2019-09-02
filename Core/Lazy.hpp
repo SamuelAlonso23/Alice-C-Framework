@@ -8,25 +8,36 @@ namespace Alice
     template<class T> class Lazy
     {
     private:
-        T value = null;
+        T value;
 
         bool valuecreated = false;
     public:
-        AliceInline Lazy() const noexcept{}
+        AliceInline Lazy() noexcept{}
 
         AliceInline Lazy(T& object) noexcept : value(object), valuecreated(true){}
+
+        AliceInline Lazy(const T& object) noexcept : value(object), valuecreated(true){}
 
         AliceInline Lazy(T&& object) noexcept : value(object), valuecreated(true){}
 
         AliceInline Lazy(Lazy<T>& object) noexcept : value(object.value), valuecreated(true){}
 
+        AliceInline Lazy(const Lazy<T>& object) noexcept : value(object.value), valuecreated(true){}
+
         AliceInline Lazy(Lazy<T>&& object) noexcept : value(object.value), valuecreated(true)
         {
-            object.value = null;
+            object.value = 0;
             object.valuecreated = false;
         }
 
         AliceInline void operator=(T& object) noexcept
+        {
+            value = object;
+            if(AliceUnlikely(!valuecreated))
+                valuecreated = true;
+        }
+
+        AliceInline void operator=(const T& object) noexcept
         {
             value = object;
             if(AliceUnlikely(!valuecreated))
