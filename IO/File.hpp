@@ -10,13 +10,13 @@ namespace Alice
         class File
         {
         private:
+            const char* filename = nullptr;
+            
             #if defined(AliceWindows)
             const WCHAR* wfilename = nullptr;
-            #endif
-
-            const char* filename = nullptr;
 
             s32 filenamesize = 0;
+            #endif
         public:
             AliceInline File() noexcept{}
 
