@@ -14,6 +14,14 @@ void ArrayCreation()
     Alice::Array<s16, 3> arr5;
 }
 
+void ArrayCopy()
+{
+    Alice::Array<s16, 3> arr2 = {208, 0, 1};
+    Alice::Array<s16, 3> arr;
+    arr.Copy(arr2);
+    s16 First = arr[0];//First is equals to 208
+}
+
 void ReadOnly()
 {
     Alice::Array<s16, 3> arr2 = {208, 0, 1};
