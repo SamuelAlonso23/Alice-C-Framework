@@ -42,6 +42,18 @@ namespace Alice
                 return arr[id];
             return arr[0];
         }
+
+        template<u64 OtherSize> AliceInline void Copy(Array<T, OtherSize>& Other) noexcept
+        {
+            for(u64 i = 0; i < (Other.Size() < size ? Other.Size() : size); i++)
+                arr[i] = Alice::Forward<T>(Other[i]);
+        }
+
+        template<u64 OtherSize> AliceInline void Copy(const Array<T, OtherSize>& Other) noexcept
+        {
+            for(u64 i = 0; i < (Other.Size() < size ? Other.Size() : size); i++)
+                arr[i] = Alice::Forward<T>(Other[i]);
+        }
         
         AliceInline void AsReadOnly() noexcept
         {
@@ -98,5 +110,5 @@ namespace Alice
                     return true;
             return false;
         }
-    };  
+    };
 }
