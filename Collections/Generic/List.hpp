@@ -244,19 +244,6 @@ namespace Alice
                         Pointer[ID] = Forward<T>(Element);
                     }
                 }
-
-                AliceInline void Remove(u64 ID) noexcept
-                {
-                    if(readonly)
-                        Exception::Raise(ExceptionType::IsReadOnly);
-                    else if(ID > (size - 1))
-                        Exception::Raise(ExceptionType::IndexOverflow);
-                    else
-                    {
-                        --size;
-                        (reinterpret_cast<T*>(Pointer)[ID]).~T();
-                    }
-                }
             };
         }
     }
