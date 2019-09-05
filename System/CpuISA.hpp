@@ -1,7 +1,7 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <System\CpuType.hpp>
-#include <System\CpuCacheLevel.hpp>
+#include <System/CpuType.hpp>
+#include <System/CpuCacheLevel.hpp>
 
 namespace Alice
 {

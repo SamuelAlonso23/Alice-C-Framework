@@ -1,8 +1,8 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
 #include <cpuid.h>
-#include <System\CpuISA.hpp>
-#include <Core\Exception.hpp>
+#include <System/CpuISA.hpp>
+#include <Core/Exception.hpp>
 
 namespace Alice
 {
