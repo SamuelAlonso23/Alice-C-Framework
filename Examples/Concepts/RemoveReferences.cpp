@@ -1,5 +1,5 @@
-#include <Basic\Types.hpp>
-#include <Concepts\RemoveReferences.hpp>
+#include <Basic/Types.hpp>
+#include <Concepts/RemoveReferences.hpp>
 
 //No reference, return type is f32
 Alice::Concepts::RemoveReferences<f32> foo()

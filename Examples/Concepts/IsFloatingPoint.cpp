@@ -1,4 +1,4 @@
-#include <Concepts\IsFloatingPoint.hpp>
+#include <Concepts/IsFloatingPoint.hpp>
 
 void FloatingPointTest()
 {

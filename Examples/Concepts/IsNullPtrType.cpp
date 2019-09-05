@@ -1,5 +1,5 @@
-#include <Basic\Types.hpp>
-#include <Concepts\IsNullPtrType.hpp>
+#include <Basic/Types.hpp>
+#include <Concepts/IsNullPtrType.hpp>
 
 f32 Tester5;
 const volatile NullPtrType Tester;

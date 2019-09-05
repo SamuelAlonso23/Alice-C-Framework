@@ -1,4 +1,4 @@
-#include <Concepts\IsFunction.hpp>
+#include <Concepts/IsFunction.hpp>
 
 class Class
 {

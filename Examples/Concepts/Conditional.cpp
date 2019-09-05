@@ -1,4 +1,4 @@
-#include <Concepts\Conditional.hpp>
+#include <Concepts/Conditional.hpp>
 
 constexpr bool Tester = false, Tester2 = true;
 

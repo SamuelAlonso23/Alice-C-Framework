@@ -1,4 +1,4 @@
-#include <Concepts\IsEnum.hpp>
+#include <Concepts/IsEnum.hpp>
 
 class Class{};
 enum Enum{};

@@ -1,4 +1,4 @@
-#include <Concepts\IsUnion.hpp>
+#include <Concepts/IsUnion.hpp>
 
 class Class{};
 union Union{};
