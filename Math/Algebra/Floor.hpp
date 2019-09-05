@@ -1,7 +1,7 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Basic\Types.hpp>
-#include <Basic\Inline.hpp>
+#include <Basic/Types.hpp>
+#include <Basic/Inline.hpp>
 #include <Configuration.hpp>
 #if defined(AliceSse)
 #include <xmmintrin.h>
