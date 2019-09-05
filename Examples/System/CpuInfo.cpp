@@ -1,4 +1,4 @@
-#include <System\CpuInfo.hpp>
+#include <System/CpuInfo.hpp>
 
 void CpuInformation()
 {
