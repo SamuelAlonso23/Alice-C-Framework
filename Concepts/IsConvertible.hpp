@@ -9,7 +9,7 @@ namespace Alice
 {
     namespace Concepts
     {
-        template<class From, class To, bool = IsVoid<From> || IsArray<To> || IsFunction<To>> class IsConvertibleClass
+        template<class From, class To, bool = IsVoid<From> || IsArray<To> /*|| IsFunction<To>*/> class IsConvertibleClass
         {
         public:
             typedef decltype(DeclaredValue<IsVoid<To>>()) Type;
