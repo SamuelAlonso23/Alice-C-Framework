@@ -8,6 +8,7 @@ namespace Alice
 {
     namespace System
     {
+        //Exceptions: CpuIdNotSupported
         AliceInline void GetCpuInfo() noexcept
         {
             using namespace ISA;
