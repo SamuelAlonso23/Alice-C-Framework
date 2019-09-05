@@ -64,6 +64,7 @@ namespace Alice
                 #endif
             }
 
+            //Exceptions: FileDoNotExists, FileIsAFolder
             AliceInline bool Exists() const noexcept
             {
                 #if defined(AliceWindows)
@@ -82,6 +83,7 @@ namespace Alice
                 #endif
             }
 
+            //Exceptions: FileDoNotExists, FileHandlerCouldNotBeCreated, FileSizeCouldNotBeExtracted
             AliceInline s64 Size() const noexcept
             {
                 if(!Exists())
@@ -111,6 +113,7 @@ namespace Alice
                 }
             }
 
+            //Exceptions: FileAlreadyExists, FileCouldNotBeCreated
             AliceInline void New() const noexcept
             {
                 if(Exists())
@@ -127,6 +130,7 @@ namespace Alice
                 }
             }
 
+            //Exceptions: FileDoNotExists, FileCouldNotBeDeleted
             AliceInline void Delete() const noexcept
             {
                 if(!Exists())
@@ -140,6 +144,7 @@ namespace Alice
                 }
             }
 
+            //Exceptions: FileDoNotExists, FileHandlerCouldNotBeCreated, FileCouldNotBeReaded
             AliceInline void Read(Collections::Generic::List<char>& Buffer) const noexcept
             {
                 if(!Exists())
@@ -165,6 +170,7 @@ namespace Alice
                 }
             }
 
+            //Exceptions: FileDoNotExists, FileHandlerCouldNotBeCreated, FileCouldNotBeWritten
             AliceInline void Write(Collections::Generic::List<char>&& Buffer) const noexcept
             {
                 if(!Exists())
@@ -190,6 +196,7 @@ namespace Alice
                 }
             }
 
+            //Exceptions: FileDoNotExists, FileHandlerCouldNotBeCreated, FileCouldNotBeWritten
             AliceInline void Write(const char* Buffer) const noexcept
             {
                 if(!Exists())
