@@ -1,5 +1,6 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
+#include <initializer_list>
 #include <Core\Forward.hpp>
 #include <Core\Exception.hpp>
 
@@ -21,6 +22,16 @@ namespace Alice
                 bool readonly = false;
             public:
                 AliceInline List() noexcept{}
+
+                AliceInline List(const std::initializer_list<T>&& il) noexcept : List<T>(il.size())
+                {
+                    u64 i = 0;
+                    for(auto& Element : il)
+                    {
+                        Pointer[i] = Element;
+                        ++i;
+                    }
+                }
 
                 AliceInline List(u64 Capacity) noexcept : Pointer(new T[Capacity]), capacity(Capacity), size(Capacity){}
 
@@ -62,6 +73,21 @@ namespace Alice
                     return Pointer[0];
                 }
 
+                AliceInline void operator=(const std::initializer_list<T>&& il) noexcept
+                {
+                    if(il.size() > capacity)
+                        Exception::Raise(ExceptionType::IndexOverflow);
+                    else
+                    {
+                        u64 i = 0;
+                        for(auto& Element : il)
+                        {
+                            Pointer[i] = Element;
+                            ++i;
+                        }
+                    }
+                }
+
                 AliceInline void operator=(List<T>& Other) noexcept
                 {
                     size = Other.size;
@@ -86,8 +112,8 @@ namespace Alice
                 {
                     size = Other.size;
                     capacity = Other.capacity;
-                    delete[] Pointer;
                     Pointer = Other.Pointer;
+                    Other.Pointer = nullptr;
                 }
 
                 AliceInline T* operator->() const noexcept
@@ -240,6 +266,35 @@ namespace Alice
                             Pointer[i + 1] = Forward<T>(Pointer[i]);
                         Pointer[ID] = Forward<T>(Element);
                     }
+                }
+
+                AliceInline void Swap(List<T>& Other) noexcept
+                {
+                    const u64&& tcap = Forward<u64>(Other.capacity), tsiz = Forward<u64>(Other.size);
+                    T*&& tptr = Forward<T*>(Other.Pointer);
+                    Other.capacity = Forward<u64>(capacity);
+                    Other.size = Forward<u64>(size);
+                    Other.Pointer = Forward<T*>(Pointer);
+                    capacity = tcap;
+                    size = tsiz;
+                    Pointer = tptr;
+                }
+
+                AliceInline bool Exists(T value) const noexcept
+                {
+                    for(u64 i = 0; i < capacity; ++i)
+                        if(Pointer[i] == value)
+                            return true;
+                    return false;
+                }
+
+                AliceInline u64 BinarySearch(T value) const noexcept
+                {
+                    for(u64 i = 0; i < capacity; ++i)
+                        if(Pointer[i] == value)
+                            return i;
+                    Exception::Raise(ExceptionType::OperationWithoutSuccess);
+                    return 0;
                 }
             };
         }
