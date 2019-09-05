@@ -32,7 +32,7 @@
 
 ALICE_TEST_CASE AddConstTest()
 {
-
+    
 }
 
 ALICE_TEST_CASE AddConstVolatileTest()
