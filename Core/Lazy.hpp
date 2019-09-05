@@ -1,7 +1,7 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Basic\Likely.hpp>
-#include <Basic\Inline.hpp>
+#include <Basic/Likely.hpp>
+#include <Basic/Inline.hpp>
 
 namespace Alice
 {

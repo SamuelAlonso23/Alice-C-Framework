@@ -1,7 +1,7 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
 #include <Database.hpp>
-#include <Core\Exception.hpp>
+#include <Core/Exception.hpp>
 
 namespace Alice
 {

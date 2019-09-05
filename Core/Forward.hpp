@@ -1,7 +1,7 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Basic\Inline.hpp>
-#include <Concepts\RemoveReferences.hpp>
+#include <Basic/Inline.hpp>
+#include <Concepts/RemoveReferences.hpp>
 
 namespace Alice
 {

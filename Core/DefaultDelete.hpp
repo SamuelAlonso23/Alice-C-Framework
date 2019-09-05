@@ -1,7 +1,7 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Concepts\EnableIf.hpp>
-#include <Concepts\IsConvertible.hpp>
+#include <Concepts/EnableIf.hpp>
+#include <Concepts/IsConvertible.hpp>
 
 namespace Alice
 {

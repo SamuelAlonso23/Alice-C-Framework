@@ -1,8 +1,8 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
 #include <OS.hpp>
-#include <Basic\Types.hpp>
-#include <Basic\Inline.hpp>
+#include <Basic/Types.hpp>
+#include <Basic/Inline.hpp>
 
 namespace Alice
 {

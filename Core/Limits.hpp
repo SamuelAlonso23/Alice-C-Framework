@@ -1,6 +1,6 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Core\Exception.hpp>
+#include <Core/Exception.hpp>
 
 namespace Alice
 {
