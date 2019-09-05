@@ -1,8 +1,8 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
 #include <initializer_list>
-#include <Core\Forward.hpp>
-#include <Core\Exception.hpp>
+#include <Core/Forward.hpp>
+#include <Core/Exception.hpp>
 
 namespace Alice
 {
