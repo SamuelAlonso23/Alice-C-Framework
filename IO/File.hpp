@@ -1,7 +1,7 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
 #include <OS.hpp>
-#include <Collections\Generic\List.hpp>
+#include <Collections/Generic/List.hpp>
 
 namespace Alice
 {
@@ -11,7 +11,7 @@ namespace Alice
         {
         private:
             const char* filename = nullptr;
-            
+
             #if defined(AliceWindows)
             const WCHAR* wfilename = nullptr;
 
