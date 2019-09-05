@@ -1,4 +1,4 @@
-#include <Core\Environment.hpp>
+#include <Core/Environment.hpp>
 
 //returns memory page size in bytes
 s32 MemoryPageSizeTest()

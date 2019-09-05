@@ -1,4 +1,4 @@
-#include <Core\Lazy.hpp>
+#include <Core/Lazy.hpp>
 
 class ReallyBigObject{};
 
@@ -6,5 +6,6 @@ void LazyTest()
 {
     Alice::Lazy<ReallyBigObject> l;
     l = ReallyBigObject();
-    ReallyBigObject j = l.Object();
+    const ReallyBigObject&& j = l.Object();
+    l = j;
 }

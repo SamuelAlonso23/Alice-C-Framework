@@ -1,5 +1,5 @@
-#include <Basic\Types.hpp>
-#include <Core\Forward.hpp>
+#include <Basic/Types.hpp>
+#include <Core/Forward.hpp>
 
 void foo()
 {

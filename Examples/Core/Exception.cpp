@@ -1,10 +1,10 @@
-#include <Core\Exception.hpp>
+#include <Core/Exception.hpp>
 
 void foo()
 {
     bool SomethingHappens;
     if(SomethingHappens)
-        Alice::Exception::Raise(Alice::ExceptionType::SomethingHappensException);
+        Alice::Exception::Raise(ExceptionType::OperationWithoutSuccess);
     foo2();
     foo3();
     foo4();
@@ -13,7 +13,7 @@ void foo()
 //returns true
 bool foo2()
 {
-    return Alice::Exception::Check(Alice::ExceptionType::SomethingHappensException);
+    return Alice::Exception::Check(ExceptionType::OperationWithoutSuccess);
 }
 
 //returns true

@@ -1,4 +1,4 @@
-#include <Core\Array.hpp>
+#include <Core/Array.hpp>
 
 void ArrayCreation()
 {
@@ -12,14 +12,6 @@ void ArrayCreation()
     Alice::Array<s16, 3> arr4 = {9, 8, 7, 5, 3};
     //Fine
     Alice::Array<s16, 3> arr5;
-}
-
-void ArrayCopy()
-{
-    Alice::Array<s16, 3> arr2 = {208, 0, 1};
-    Alice::Array<s16, 3> arr;
-    arr.Copy(arr2);
-    s16 First = arr[0];//First is equals to 208
 }
 
 void ReadOnly()
