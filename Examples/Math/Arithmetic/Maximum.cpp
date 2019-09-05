@@ -1,4 +1,4 @@
-#include <Math\Arithmetic\Maximum.hpp>
+#include <Math/Arithmetic/Maximum.hpp>
 
 //returns 23.5
 f32 MaximumTest()

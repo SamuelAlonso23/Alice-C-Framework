@@ -1,4 +1,4 @@
-#include <Math\Arithmetic\Minimum.hpp>
+#include <Math/Arithmetic/Minimum.hpp>
 
 //returns 3.4
 f32 MinimumTest()

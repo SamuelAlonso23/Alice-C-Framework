@@ -1,4 +1,4 @@
-#include <Math\Arithmetic\AbsoluteValue.hpp>
+#include <Math/Arithmetic/AbsoluteValue.hpp>
 
 //returns 8
 s32 IntegerAbsoluteValue()
