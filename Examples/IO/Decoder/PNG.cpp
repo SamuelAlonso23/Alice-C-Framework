@@ -3,7 +3,7 @@
 
 void PNGDecoderTest()
 {
-    Alice::IO::Decoder::PNG i("insert your windows png file path");
+    Alice::IO::Decoder::PNG i("insert your windows png file path, like C:\\image01.png   ");
     std::cout << std::boolalpha;
     std::cout << "Overflow? " << i.PixelOverflow() << std::endl;
     std::cout << "Magic number? " << i.IsMagic() << std::endl;
