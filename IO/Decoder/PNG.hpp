@@ -140,8 +140,6 @@ namespace Alice
 
                 AliceInline PNG(Collections::Generic::List<char>& FileContent) noexcept
                 {
-                    if(!Exception::CheckAndReset(ExceptionType::FileCouldNotBeReaded))
-                    {
                         if(FileContent[0] == -119 && FileContent[1] == 80 && FileContent[2] == 78 && FileContent[3] == 71 && FileContent[4] == 13 && FileContent[5] == 10 && FileContent[6] == 26 && FileContent[7] == 10)
                         {
                             ismagic = true;
@@ -245,7 +243,6 @@ namespace Alice
                         }
                         else
                             Exception::Raise(ExceptionType::PngNoMagic);
-                    }
                 }
 
                 AliceInline bool IsMagic() const noexcept
