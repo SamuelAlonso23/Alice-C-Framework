@@ -6,6 +6,6 @@ namespace Alice
     class App
     {
     public:
-        void Init();
+        static void Init();
     };
 }
