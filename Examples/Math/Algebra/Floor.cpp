@@ -1,6 +1,6 @@
 #include <iostream>
 #define AliceSse
-#include <Math\Algebra\Floor.hpp>
+#include <Math/Algebra/Floor.hpp>
 
 void FloorTest()
 {

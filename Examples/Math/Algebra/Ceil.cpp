@@ -1,6 +1,6 @@
 #include <iostream>
 #define AliceSse
-#include <Math\Algebra\Ceil.hpp>
+#include <Math/Algebra/Ceil.hpp>
 
 void CeilTest()
 {
