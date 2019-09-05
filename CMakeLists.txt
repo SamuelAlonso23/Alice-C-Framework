@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(json11)
+project(Alice-C-Framework)
 
 if(CMAKE_VERSION VERSION_LESS "3")
     add_definitions(-std=c++14)
