@@ -16,6 +16,7 @@ namespace Alice
             #endif
         }
 
+        //Exceptions: AppPathError
         AliceInline void GetExecutableDirectory() noexcept
         {
             #if defined(AliceWindows)
@@ -27,6 +28,7 @@ namespace Alice
             #endif
         }
 
+        //Exceptions: AppPathError
         AliceInline void GetBaseDirectory(bool IncludeLastSeparator = true) noexcept
         {
             #if defined(AliceWindows)
