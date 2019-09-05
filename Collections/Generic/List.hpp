@@ -52,6 +52,7 @@ namespace Alice
                     Other.Pointer = nullptr;
                 }
 
+                //Exceptions: IndexOverflow
                 AliceInline T operator[](u64 id) const noexcept
                 {
                     if(id >= capacity)
@@ -62,6 +63,7 @@ namespace Alice
                     return Pointer[id];
                 }
 
+                //Exceptions: IsReadOnly, IndexOverflow
                 AliceInline T& operator[](u64 id) noexcept
                 {
                     if(readonly)
@@ -72,7 +74,8 @@ namespace Alice
                         return Pointer[id];
                     return Pointer[0];
                 }
-
+                
+                //Exceptions: IndexOverflow
                 AliceInline void operator=(const std::initializer_list<T>&& il) noexcept
                 {
                     if(il.size() > capacity)
@@ -151,6 +154,7 @@ namespace Alice
                     return sizeof(T) * capacity;
                 }
 
+                //Exceptions: IsReadOnly
                 AliceInline void Reserve(u64 NewReservation) noexcept
                 {
                     if(NewReservation != capacity)
@@ -169,6 +173,7 @@ namespace Alice
                     }
                 }
 
+                //Exceptions: IsReadOnly
                 AliceInline void Resize(u64 NewSize) noexcept
                 {
                     if(NewSize != size)
@@ -184,6 +189,7 @@ namespace Alice
                     }
                 }
 
+                //Exceptions: FromIsGreaterThanTo, IsReadOnly
                 AliceInline void Clear(u64 From, u64 To) noexcept
                 {
                     if(From > To)
@@ -203,6 +209,7 @@ namespace Alice
                     delete[] Pointer;
                 }
 
+                //Exceptions: IsReadOnly
                 AliceInline void Add(T& Element) noexcept
                 {
                     if(readonly)
@@ -215,6 +222,7 @@ namespace Alice
                     }
                 }
 
+                //Exceptions: IsReadOnly
                 AliceInline void Add(T&& Element) noexcept
                 {
                     if(readonly)
@@ -227,7 +235,8 @@ namespace Alice
                     }
                 }
 
-                AliceInline void Remove() noexcept
+                //Exceptions: IsReadOnly
+                AliceInline void RemoveLast() noexcept
                 {
                     if(readonly)
                         Exception::Raise(ExceptionType::IsReadOnly);
@@ -238,6 +247,7 @@ namespace Alice
                     }
                 }
 
+                //Exceptions: IsReadOnly, IndexOverflow
                 AliceInline void Add(T& Element, u64 ID) noexcept
                 {
                     if(readonly)
@@ -253,6 +263,7 @@ namespace Alice
                     }
                 }
 
+                //Exceptions: IsReadOnly, IndexOverflow
                 AliceInline void Add(T&& Element, u64 ID) noexcept
                 {
                     if(readonly)
@@ -288,6 +299,7 @@ namespace Alice
                     return false;
                 }
 
+                //Exceptions: OperationWithoutSuccess
                 AliceInline u64 BinarySearch(T value) const noexcept
                 {
                     for(u64 i = 0; i < capacity; ++i)
