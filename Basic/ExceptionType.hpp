@@ -1,6 +1,6 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Basic\Types.hpp>
+#include <Basic/Types.hpp>
 
 enum class ExceptionType : u16
 {
@@ -21,5 +21,6 @@ enum class ExceptionType : u16
     FileCouldNotBeDeleted,
     FileCouldNotBeReaded,
     FileCouldNotBeWritten,
+    MemoryAllocationFailed,
     
 };
