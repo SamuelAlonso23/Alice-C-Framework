@@ -1,6 +1,6 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Basic\Types.hpp>
+#include <Basic/Types.hpp>
 
 namespace Alice
 {
@@ -10,12 +10,6 @@ namespace Alice
         {
         public:
             constexpr static bool Value = false;
-        };
-
-        template<> class IsIntegerClass<byte>
-        {
-        public:
-            constexpr static bool Value = true;
         };
 
         template<> class IsIntegerClass<bool>

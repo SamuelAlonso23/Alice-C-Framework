@@ -1,6 +1,6 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Basic\Types.hpp>
+#include <Basic/Types.hpp>
 
 namespace Alice
 {
@@ -18,7 +18,7 @@ namespace Alice
             constexpr static bool Value = true;
         };
 
-        template<class T, u32 Size> class IsArrayClass<T[Size]>
+        template<class T, u64 Size> class IsArrayClass<T[Size]>
         {
         public:
             constexpr static bool Value = true;

@@ -1,9 +1,9 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Concepts\IsVoid.hpp>
-#include <Concepts\IsArray.hpp>
-#include <Concepts\IsFunction.hpp>
-#include <Concepts\DeclaredValue.hpp>
+#include <Concepts/IsVoid.hpp>
+#include <Concepts/IsArray.hpp>
+#include <Concepts/IsFunction.hpp>
+#include <Concepts/DeclaredValue.hpp>
 
 namespace Alice
 {

@@ -1,6 +1,6 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Basic\Inline.hpp>
+#include <Basic/Inline.hpp>
 
 namespace Alice
 {
