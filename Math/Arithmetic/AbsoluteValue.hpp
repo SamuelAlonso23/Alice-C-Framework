@@ -1,7 +1,7 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-#include <Basic\Epsilon.hpp>
-#include <Basic\Inline.hpp>
+#include <Basic/Epsilon.hpp>
+#include <Basic/Inline.hpp>
 #include <Configuration.hpp>
 #if defined(AliceSse)
 #include <xmmintrin.h>
