@@ -309,8 +309,8 @@ namespace Alice
                 PerformanceTsc = (c << 4) >> 31;
                 L2iPerformanceCounter = (c << 3) >> 31;
                 MonitorxMwaitx = c >> 31;
-                #endif
             }
+            #endif
         }
     }
 }

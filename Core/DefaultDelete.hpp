@@ -27,7 +27,7 @@ namespace Alice
 
         template<class U, class = requires Concepts::IsConvertible<U(*)[], T(*)[]>> AliceInline DefaultDelete(const DefaultDelete<U[]>&) noexcept{}
 
-        template<class U, class Concepts::EnableIf<Concepts::IsConvertible<U(*)[], T(*)[]>> AliceInline operator()(U* ptr) const noexcept
+        template<class U, class Concepts::EnableIf<Concepts::IsConvertible<U(*)[], T(*)[]>::Type>> AliceInline operator()(U* ptr) const noexcept
         {
             static_assert(sizeof(T) > 0, "Cannot delete pointer of an incomplete type");
             delete[] ptr;

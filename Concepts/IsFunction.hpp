@@ -1,6 +1,6 @@
 //Copyright Alice Framework, All Rights Reserved
 #pragma once
-
+/**
 namespace Alice
 {
     namespace Concepts
@@ -302,3 +302,4 @@ namespace Alice
         template<class T> constexpr bool IsFunction = IsFunctionClass<T>::Value;
     }
 }
+*/
