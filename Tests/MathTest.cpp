@@ -82,7 +82,7 @@ ALICE_TEST_CASE MinimumTest()
     ALICE_TEST_ASSERT(Alice::Math::Arithmetic::Minimum<f64>(Epsilon64, 0.0) == 0.0);
 }
 
-int main(const int argc, const char ** argv)
+ALICE_UNIT_TEST
 {
     CeilTest();
     FloorTest();
@@ -91,5 +91,4 @@ int main(const int argc, const char ** argv)
     AbsoluteValueTest();
     MaximumTest();
     MinimumTest();
-    return 0;
 }

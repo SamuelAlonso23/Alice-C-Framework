@@ -31,5 +31,13 @@ enum class ExceptionType : u16
     PngChunkUnderflow,
     PngChunkOverflow,
     PngUnsupportedChunk,
-    
+    SocketAccept,
+    SocketBind,
+    SocketClose,
+    SocketConnect,
+    SocketListen,
+    SocketOpen,
+    SocketReceive,
+    SocketSend,
+    SocketSetOpt
 };

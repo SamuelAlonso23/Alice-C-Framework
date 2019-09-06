@@ -9,11 +9,12 @@
 #include <Core/Forward.hpp>
 #include <Core/Lazy.hpp>
 #include <Core/Limits.hpp>
-#include <Tests/Test.hpp>
 */
+#include <Tests/Test.hpp>
 
 
-int main(const int argc, const char ** argv)
+
+ALICE_UNIT_TEST
 {
-    return 0;
+
 }

@@ -70,10 +70,9 @@ ALICE_TEST_CASE LikelyTest()
     ALICE_TEST_ASSERT(likely && unlikely);
 }
 
-int main(const int argc, const char ** argv)
+ALICE_UNIT_TEST
 {
     EpsilonTest();
     InlineTest();
     LikelyTest();
-    return 0;
 }
