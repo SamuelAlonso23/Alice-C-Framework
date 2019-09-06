@@ -2,6 +2,7 @@
 #pragma once
 #include <OS.hpp>
 
+bool AppLoaded = false;
 const char* BaseDirectory = nullptr;
 const char* ExecutableDirectory = nullptr;
 
