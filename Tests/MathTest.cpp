@@ -31,8 +31,8 @@ ALICE_TEST_CASE RoundTest()
     f32 ind(Epsilon64 + 0.5);
     f32 outf(1.0);
     f64 outd(1.0);
-    ALICE_TEST_ASSERT(Alice::Math::Algebra::Floor<f32>(inf) == outf);
-    ALICE_TEST_ASSERT(Alice::Math::Algebra::Floor<f64>(ind) == outd);
+    ALICE_TEST_ASSERT(Alice::Math::Algebra::Round<f32>(inf) == outf);
+    ALICE_TEST_ASSERT(Alice::Math::Algebra::Round<f64>(ind) == outd);
 }
 
 // Please consider changing this to match the syntax of the other functions
@@ -86,7 +86,7 @@ int main(const int argc, const char ** argv)
 {
     CeilTest();
     FloorTest();
-    //RoundTest(); check Round.hpp
+    RoundTest();
     SquareRootTest();
     AbsoluteValueTest();
     MaximumTest();
