@@ -5,7 +5,7 @@
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
     AppInstance = hInstance;
-    Alice::App::Init();
+    Alice::App a();
 }
 #elif defined(AliceMac)
 //Mac OS
