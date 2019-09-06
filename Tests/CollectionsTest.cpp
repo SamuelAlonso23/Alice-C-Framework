@@ -7,8 +7,7 @@ ALICE_TEST_CASE ListTest()
     Alice::Collections::Generic::List<int> list;
 }
 
-int main(const int argc, const char ** argv)
+ALICE_UNIT_TEST
 {
     ListTest();
-    return 0;
 }

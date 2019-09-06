@@ -13,9 +13,8 @@ ALICE_TEST_CASE FileTest()
 
 }
 
-int main(const int argc, const char ** argv)
+ALICE_UNIT_TEST
 {
     PNGTest();
     FileTest();
-    return 0;
 }

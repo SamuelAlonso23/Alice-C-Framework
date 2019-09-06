@@ -47,10 +47,9 @@ ALICE_TEST_CASE AddLvalueReferenceTest()
 
 
 
-int main(const int argc, const char ** argv)
+ALICE_UNIT_TEST
 {
     AddConstTest();
     AddConstVolatileTest();
     AddLvalueReferenceTest();
-    return 0;
 }
