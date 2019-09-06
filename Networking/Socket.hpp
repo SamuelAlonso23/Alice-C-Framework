@@ -71,7 +71,41 @@ namespace Alice
                 }
             }
 
-            
+            Socket Accept() noexcept
+            {
+
+            }
+
+            void Bind(const char* Host, const u32 Port) noexcept
+            {
+
+            }
+
+            void Connect(const char* Host, const u32 Port) noexcept
+            {
+
+            }
+
+            void Listen()
+            {
+                
+            }
+
+            void Receive(const Socket& Sender)
+            {
+
+            }
+
+            void Send(const Socket& Receiver)
+            {
+
+            }
+
+            void SetOpt()
+            {
+
+            }
+
         private:
             u32 socketfd;
         };

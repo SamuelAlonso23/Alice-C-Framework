@@ -37,7 +37,7 @@ enum class ExceptionType : u16
     SocketConnect,
     SocketListen,
     SocketOpen,
-    SocketRead,
-    SocketSetOpt,
-    SocketWrite
+    SocketReceive,
+    SocketSend,
+    SocketSetOpt
 };
