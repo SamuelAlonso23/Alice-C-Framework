@@ -22,5 +22,14 @@ enum class ExceptionType : u16
     FileCouldNotBeReaded,
     FileCouldNotBeWritten,
     MemoryAllocationFailed,
+    LimitOverflow,
+    PngNoMagic,
+    PngWrongHeaderSize,
+    PngNoIHDR,
+    PngWrongChecksum,
+    PngInvalidColorTypeBitDepthCombo,
+    PngChunkUnderflow,
+    PngChunkOverflow,
+    PngUnsupportedChunk,
     
 };
