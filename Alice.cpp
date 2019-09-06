@@ -1,5 +1,4 @@
 //Copyright Alice Framework, All Rights Reserved
-#include <Database.hpp>
 #include <Core/App.hpp>
 
 #if defined(AliceWindows)
