@@ -4,7 +4,7 @@ Modern General Purpose C++ Framework (Clang & GCC Only)
 
 Linux:
 
-```C++
+```sh
 git clone https://github.com/AProgrammerFemale/Alice-C-Framework.git
 cd Alice-C-Framework
 mkdir Build
@@ -15,7 +15,7 @@ make
 
 Windows:
 
-```C++
+```batch
 git clone https://github.com/AProgrammerFemale/Alice-C-Framework.git
 cd Alice-C-Framework
 mkdir Build
