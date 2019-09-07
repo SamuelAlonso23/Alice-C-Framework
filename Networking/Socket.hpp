@@ -35,18 +35,17 @@ namespace Alice
         {
 
         };
-
+/**
         enum class SocketReceiveFlag : u32
         {
-            None,
-            
+            None
         };
         
         enum class SocketSendFlag : u32
         {
-
+            None
         };
-
+*/
         class Socket
         {
         public:
@@ -56,7 +55,7 @@ namespace Alice
                 const SocketDomain& Domain,
                 const SocketType& Type) noexcept
             {
-
+                
             }
 
             Socket(const Socket& other) noexcept 
@@ -71,10 +70,7 @@ namespace Alice
 
             ~Socket()
             {
-                if(close(socketfd) == -1)
-                {
-                    Exception::Raise(ExceptionType::SocketClose);
-                }
+
             }
 
             Socket Accept() noexcept
@@ -84,7 +80,19 @@ namespace Alice
 
             void Bind(const char* Host, const u32 Port) noexcept
             {
+                sockaddr address;
+                if(bind(socketfd,&address,sizeof(address)) == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketClose);
+                }
+            }
 
+            void Close()
+            {
+                if(close(socketfd) == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketClose);
+                }
             }
 
             void Connect(const char* Host, const u32 Port) noexcept
@@ -97,14 +105,49 @@ namespace Alice
                 
             }
 
-            void Receive(const Socket& Sender)
+            void Open(const SocketDomain& Domain, const SocketType& Type)
             {
-
+                socketfd = socket(
+                    static_cast<int>(Domain),
+                    static_cast<int>(Type),
+                    0);
+                if(socketfd == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketOpen);
+                }
+                else
+                {
+                    domain = Domain;
+                    type = Type;   
+                }
             }
 
-            void Send(const Socket& Receiver)
+            s32 Read(
+                Socket& Connection,
+                char* Buffer,
+                u32 Length)
             {
+                s32 length = read(Connection.socketfd, Buffer, Length);
+                if(length == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketRead);
+                    return 0;
+                }
+                return length;
+            }
 
+            s32 Write(
+                Socket& Connection, 
+                const char* Buffer, 
+                u32 Length)
+            {
+                s32 length = write(Connection.socketfd, Buffer, Length);
+                if(length == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketWrite);
+                    return 0;
+                }
+                return length;
             }
 
             void SetOpt()
@@ -113,7 +156,10 @@ namespace Alice
             }
 
         private:
+            bool open;
             u32 socketfd;
+            SocketDomain domain;
+            SocketType type;
         };
     }
 }
