@@ -11,7 +11,7 @@ namespace Alice
         AliceInline App() noexcept
         {
             if(AppLoaded)
-                Exception::Raise(ExceptionType::AppAlreadyLoaded);
+                //Exception::Raise(ExceptionType::AppAlreadyLoaded);
             else
             {
                 AppLoaded = true;

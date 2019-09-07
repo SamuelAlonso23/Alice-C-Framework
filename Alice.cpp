@@ -15,5 +15,5 @@ int main(const int argc, const char ** argv)
     return 0;
 }
 #else
-#error INCOMPATIBLE_SYSTEM
+#error "This system is not compatible with the Alice Framework"
 #endif

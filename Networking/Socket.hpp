@@ -20,15 +20,31 @@ namespace Alice
     {
         enum class SocketDomain : u32
         {
-            IPv4,
-            IPv6
+            IPv4 = AF_INET,
+            IPv6 = AF_INET6
         };
 
         enum class SocketType : u32
         {
-            Stream,
-            Datagram,
-            SequencePacket
+            Stream = SOCK_STREAM,
+            Datagram = SOCK_DGRAM,
+            SequencePacket = SOCK_SEQPACKET
+        };
+
+        enum class SocketOption : u32
+        {
+
+        };
+
+        enum class SocketReceiveFlag : u32
+        {
+            None,
+            
+        };
+        
+        enum class SocketSendFlag : u32
+        {
+
         };
 
         class Socket
@@ -40,17 +56,7 @@ namespace Alice
                 const SocketDomain& Domain,
                 const SocketType& Type) noexcept
             {
-                u32 domain;
-                u32 type;
-                
-                socketfd = socket(
-                    domain, 
-                    type, 
-                    0);
-                 if(socketfd == -1)
-                 {
-                     Exception::Raise(ExceptionType::SocketOpen);
-                 }
+
             }
 
             Socket(const Socket& other) noexcept 
