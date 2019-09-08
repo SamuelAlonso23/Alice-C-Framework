@@ -55,35 +55,38 @@ namespace Alice
                 const SocketDomain& Domain,
                 const SocketType& Type) noexcept
             {
-                
+                Open(Domain,Type);    
             }
 
-            Socket(const Socket& other) noexcept 
+            Socket(const Socket& Other) = delete;
+
+            Socket(Socket&& Other) noexcept 
             {
-
-            }
-
-            Socket(Socket&& other) noexcept 
-            {
-
+                socketfd = Other.socketfd;
+                domain = Other.domain;
+                type = Other.type;
+                open = Other.open;
             }
 
             ~Socket()
             {
-
+                if(open)
+                {
+                    Close();
+                }
             }
 
-            Socket Accept() noexcept
+            Socket Accept(const u32 Port) noexcept
             {
                 Socket client;
-                int result(-1);
+                s32 result(-1);
                 socklen_t size;
                 if(domain == SocketDomain::IPv4)
                 {
                     sockaddr_in address;
                     address.sin_family = AF_INET;
                     address.sin_addr.s_addr = INADDR_ANY;
-                    address.sin_port = htons(port);
+                    address.sin_port = htons(Port);
                     size = sizeof(address);
                     result = accept(socketfd,(sockaddr*)&address,&size);
                 }
@@ -92,7 +95,7 @@ namespace Alice
                     sockaddr_in6 address;
                     address.sin6_family = AF_INET6;
                     address.sin6_addr = in6addr_any;
-                    address.sin6_port = htons(port);
+                    address.sin6_port = htons(Port);
                     size = sizeof(address);
                     result = accept(socketfd,(sockaddr*)&address,&size);
                 }
@@ -105,7 +108,7 @@ namespace Alice
 
             void Bind(const u32 Port) noexcept
             {
-                u32 result(-1);
+                s32 result(-1);
                 if(domain == SocketDomain::IPv4)
                 {
                     sockaddr_in address;
@@ -146,16 +149,24 @@ namespace Alice
 
             void Connect(const char* Host, const u32 Port) noexcept
             {
-                if(open)
+                s32 result(-1);
+                if(domain == SocketDomain::IPv4)
                 {
-                    if(domain == SocketDomain::IPv4)
-                    {
+                    sockaddr_in address;
+                    address.sin_port = htons(Port);
+                    inet_pton(AF_INET,Host,&address.sin_addr);
+                    connect(socketfd,(sockaddr*)&address,sizeof(address));
+                }   
+                else if(domain == SocketDomain::IPv6)
+                {
+                    sockaddr_in6 address;
+                    address.sin6_port = htons(Port);
+                    inet_pton(AF_INET6,Host,&address.sin6_addr);
+                }
 
-                    }   
-                    else if(domain == SocketDomain::IPv6)
-                    {
-                        /* code */
-                    }
+                if(result == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketConnect);
                 }
             }
 
@@ -218,10 +229,19 @@ namespace Alice
 
             }
 
+            Socket& operator=(const Socket& rhs) = delete;
+
+            Socket& operator=(Socket&& rhs)
+            {
+                socketfd = rhs.socketfd;
+                domain = rhs.domain;
+                type = rhs.type;
+                open = rhs.open;
+            }
+
         private:
             bool open;
-            u32 port;
-            u32 socketfd;
+            s32 socketfd;
             SocketDomain domain;
             SocketType type;
         };
