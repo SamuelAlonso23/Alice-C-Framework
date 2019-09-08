@@ -75,34 +75,96 @@ namespace Alice
 
             Socket Accept() noexcept
             {
+                Socket client;
+                int result(-1);
+                socklen_t size;
+                if(domain == SocketDomain::IPv4)
+                {
+                    sockaddr_in address;
+                    address.sin_family = AF_INET;
+                    address.sin_addr.s_addr = INADDR_ANY;
+                    address.sin_port = htons(port);
+                    size = sizeof(address);
+                    result = accept(socketfd,(sockaddr*)&address,&size);
+                }
+                else if(domain == SocketDomain::IPv6)
+                {
+                    sockaddr_in6 address;
+                    address.sin6_family = AF_INET6;
+                    address.sin6_addr = in6addr_any;
+                    address.sin6_port = htons(port);
+                    size = sizeof(address);
+                    result = accept(socketfd,(sockaddr*)&address,&size);
+                }
 
+                if(result == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketAccept);
+                }
             }
 
-            void Bind(const char* Host, const u32 Port) noexcept
+            void Bind(const u32 Port) noexcept
             {
-                sockaddr address;
-                if(bind(socketfd,&address,sizeof(address)) == -1)
+                u32 result(-1);
+                if(domain == SocketDomain::IPv4)
                 {
-                    Exception::Raise(ExceptionType::SocketClose);
+                    sockaddr_in address;
+                    address.sin_family = AF_INET;
+                    address.sin_addr.s_addr = INADDR_ANY;
+                    address.sin_port = htons(Port);
+                    result = bind(socketfd,(sockaddr*)&address,sizeof(address));
+                }
+                else if(domain == SocketDomain::IPv6)
+                {
+                    sockaddr_in6 address;
+                    address.sin6_family = AF_INET6;
+                    address.sin6_addr = in6addr_any;
+                    address.sin6_port = htons(Port);
+                    result = bind(socketfd,(sockaddr*)&address,sizeof(address));
+                }
+                
+                if(result == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketBind);
                 }
             }
 
             void Close()
             {
-                if(close(socketfd) == -1)
+                if(open)
                 {
-                    Exception::Raise(ExceptionType::SocketClose);
+                    if(close(socketfd) == -1)
+                    {
+                        Exception::Raise(ExceptionType::SocketClose);
+                    }
+                    else
+                    {
+                        open = false;
+                    }
                 }
             }
 
             void Connect(const char* Host, const u32 Port) noexcept
             {
+                if(open)
+                {
+                    if(domain == SocketDomain::IPv4)
+                    {
 
+                    }   
+                    else if(domain == SocketDomain::IPv6)
+                    {
+                        /* code */
+                    }
+                }
             }
 
-            void Listen()
+            void Listen(u32 Backlog)
             {
-                
+                if(listen(socketfd, Backlog) == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketListen);
+                }
             }
 
             void Open(const SocketDomain& Domain, const SocketType& Type)
@@ -119,6 +181,7 @@ namespace Alice
                 {
                     domain = Domain;
                     type = Type;   
+                    open = true;
                 }
             }
 
@@ -157,6 +220,7 @@ namespace Alice
 
         private:
             bool open;
+            u32 port;
             u32 socketfd;
             SocketDomain domain;
             SocketType type;
