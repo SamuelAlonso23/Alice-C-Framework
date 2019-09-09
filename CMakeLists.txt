@@ -9,7 +9,12 @@ else()
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
+option(BUILD_EXAMPLES "Build code examples" OFF)
 option(BUILD_TESTS "Build unit tests" OFF)
+
+if(BUILD_EXAMPLES)
+add_subdirectory(Examples)
+endif()
 
 if(BUILD_TESTS)
     include(CTest)
