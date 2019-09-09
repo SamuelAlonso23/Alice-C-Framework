@@ -33,7 +33,23 @@ namespace Alice
 
         enum class SocketOption : u32
         {
-
+            /*AcceptConnection,
+            BindToDevice,
+            Broadcast,
+            BSDCompat,
+            Debug,
+            Domain,
+            Error,
+            DoNotRoute,
+            KeepAlive,
+            Linger,
+            Mark,
+            OutOfBandInline,
+            PassCredentials,
+            PeerCredentials,
+            */
+           ReuseAddress,
+           ReusePort
         };
 /**
         enum class SocketReceiveFlag : u32
@@ -76,7 +92,7 @@ namespace Alice
                 }
             }
 
-            Socket Accept(const u32 Port) noexcept
+            Socket Accept() noexcept
             {
                 Socket client;
                 s32 result(-1);
@@ -86,7 +102,7 @@ namespace Alice
                     sockaddr_in address;
                     address.sin_family = AF_INET;
                     address.sin_addr.s_addr = INADDR_ANY;
-                    address.sin_port = htons(Port);
+                    address.sin_port = htons(port);
                     size = sizeof(address);
                     result = accept(socketfd,(sockaddr*)&address,&size);
                 }
@@ -95,7 +111,7 @@ namespace Alice
                     sockaddr_in6 address;
                     address.sin6_family = AF_INET6;
                     address.sin6_addr = in6addr_any;
-                    address.sin6_port = htons(Port);
+                    address.sin6_port = htons(port);
                     size = sizeof(address);
                     result = accept(socketfd,(sockaddr*)&address,&size);
                 }
@@ -104,6 +120,15 @@ namespace Alice
                 {
                     Exception::Raise(ExceptionType::SocketAccept);
                 }
+                else
+                {
+                    client.socketfd = result;
+                    client.open = true;
+                    client.port = port;
+                    client.domain = domain;
+                    client.type = type;   
+                }
+                return client;
             }
 
             void Bind(const u32 Port) noexcept
@@ -130,6 +155,10 @@ namespace Alice
                 {
                     Exception::Raise(ExceptionType::SocketBind);
                 }
+                else
+                {
+                    port = Port;
+                }
             }
 
             void Close()
@@ -153,21 +182,29 @@ namespace Alice
                 if(domain == SocketDomain::IPv4)
                 {
                     sockaddr_in address;
+                    address.sin_family = AF_INET;
                     address.sin_port = htons(Port);
                     inet_pton(AF_INET,Host,&address.sin_addr);
-                    connect(socketfd,(sockaddr*)&address,sizeof(address));
+                    result = connect(socketfd,(sockaddr*)&address,sizeof(address));
                 }   
                 else if(domain == SocketDomain::IPv6)
                 {
                     sockaddr_in6 address;
+                    address.sin6_family = AF_INET6;
                     address.sin6_port = htons(Port);
                     inet_pton(AF_INET6,Host,&address.sin6_addr);
+                    result = connect(socketfd,(sockaddr*)&address,sizeof(address));
                 }
 
                 if(result == -1)
                 {
                     Exception::Raise(ExceptionType::SocketConnect);
                 }
+                else
+                {
+                    port = Port;
+                }
+                
             }
 
             void Listen(u32 Backlog)
@@ -197,11 +234,10 @@ namespace Alice
             }
 
             s32 Read(
-                Socket& Connection,
                 char* Buffer,
                 u32 Length)
             {
-                s32 length = read(Connection.socketfd, Buffer, Length);
+                s32 length = read(socketfd, Buffer, Length);
                 if(length == -1)
                 {
                     Exception::Raise(ExceptionType::SocketRead);
@@ -211,11 +247,10 @@ namespace Alice
             }
 
             s32 Write(
-                Socket& Connection, 
                 const char* Buffer, 
                 u32 Length)
             {
-                s32 length = write(Connection.socketfd, Buffer, Length);
+                s32 length = write(socketfd, Buffer, Length);
                 if(length == -1)
                 {
                     Exception::Raise(ExceptionType::SocketWrite);
@@ -242,6 +277,7 @@ namespace Alice
         private:
             bool open;
             s32 socketfd;
+            u32 port;
             SocketDomain domain;
             SocketType type;
         };

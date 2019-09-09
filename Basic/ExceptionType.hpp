@@ -35,6 +35,7 @@ enum class ExceptionType : u16
     SocketBind,
     SocketClose,
     SocketConnect,
+    SocketGetOpt,
     SocketListen,
     SocketOpen,
     SocketRead,

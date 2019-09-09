@@ -3,17 +3,21 @@
 #include <Networking/Socket.hpp>
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
 
 int main(const int argc, const char ** argv)
 {
-    char *Message = "Hello from client";
-     
+    const char *Message = "Hello from client";
+    char Buffer[1024] = {0};
+    
+
     Alice::Networking::Socket ClientSocket(
         Alice::Networking::SocketDomain::IPv4, 
         Alice::Networking::SocketType::Stream);
        
     if(Alice::Exception::Check(ExceptionType::SocketOpen))
     {
+        std::cerr << "Socket Open" << std::endl;
         return EXIT_FAILURE;
     }
 
@@ -21,10 +25,27 @@ int main(const int argc, const char ** argv)
 
     if(Alice::Exception::Check(ExceptionType::SocketConnect))
     {
+        std::cerr << "Socket Connect" << std::endl;
         return EXIT_FAILURE;
     }
 
-    ClientSocket.Write(ClientSocket, Message, strlen(Messgae));
+    ClientSocket.Write(Message,strlen(Message));
+
+    if(Alice::Exception::Check(ExceptionType::SocketWrite))
+    {
+        std::cerr << "Socket Write" << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    ClientSocket.Read(Buffer, sizeof(Buffer));
+
+    if(Alice::Exception::Check(ExceptionType::SocketRead))
+    {
+        std::cerr << "Socket Read" << std::endl;
+        return EXIT_FAILURE;
+    }
+    
+    std::cerr << Buffer << std::endl;
 
     return EXIT_SUCCESS;
 }
