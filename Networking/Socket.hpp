@@ -1,7 +1,8 @@
 #include <Basic/NoDefault.hpp>
 #include <Basic/Types.hpp>
-#include <Core/Exception.hpp>
+#include <Collections/Generic/List.hpp>
 #include <Configuration.hpp>
+#include <Core/Exception.hpp>
 
 
 #if defined(AliceWindows)
@@ -57,17 +58,28 @@ namespace Alice
             ReusePort = SO_REUSEPORT,
             TimeStamp = SO_TIMESTAMP
         };
-/**
+
         enum class SocketReceiveFlag : u32
         {
-            None
+            DoNotWait = MSG_DONTWAIT,
+            ErrorQueue = MSG_ERRQUEUE,
+            OutOfBand = MSG_OOB,
+            Peek = MSG_PEEK,
+            Truncate = MSG_TRUNC,
+            WaitAll = MSG_WAITALL
         };
         
         enum class SocketSendFlag : u32
         {
-            None
+            Confirm = MSG_CONFIRM,
+            DoNotRoute = MSG_DONTROUTE,
+            DoNotWait = MSG_DONTWAIT,
+            EndOfRecord = MSG_EOR,
+            More = MSG_MORE,
+            NoSignal = MSG_NOSIGNAL,
+            OutOfBand = MSG_OOB
         };
-*/
+
         class Socket
         {
         public:
@@ -209,8 +221,7 @@ namespace Alice
                 else
                 {
                     port = Port;
-                }
-                
+                }       
             }
 
             bool GetFlag(const SocketFlag& Flag) const
@@ -284,6 +295,44 @@ namespace Alice
                 {
                     Exception::Raise(ExceptionType::SocketRead);
                     return 0;
+                }
+                return length;
+            }
+
+            s32 Receive(
+                char* Buffer, 
+                const u32 Length, 
+                Alice::Collections::Generic::List<SocketReceiveFlag> ReceiveFlags)
+            {
+                s32 length;
+                u32 flags(0);
+                for(u32 index = 0; index < ReceiveFlags.Size(); index++)
+                {
+                    flags |= static_cast<u32>(ReceiveFlags[index]);
+                }
+                length = recv(socketfd, Buffer, Length, flags);
+                if(length == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketReceive);
+                }
+                return length;
+            }
+
+            s32 Send(
+                const char* Buffer, 
+                const u32 Length, 
+                Alice::Collections::Generic::List<SocketSendFlag> SendFlags)
+            {
+                s32 length;
+                u32 flags(0);
+                for(u32 index = 0; index < SendFlags.Size(); index++)
+                {
+                    flags |= static_cast<u32>(SendFlags[index]);
+                }
+                length = send(socketfd, Buffer, Length, flags);
+                if(length == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketSend);
                 }
                 return length;
             }
