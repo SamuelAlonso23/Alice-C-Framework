@@ -187,7 +187,7 @@ namespace Alice
 
             /**
              * @author John Patek
-             * @brief Constructs Socket from another Socket rvalue
+             * @brief Constructs Socket from another Socket rvalue.
              */ 
             Socket(Socket&& Other) noexcept 
             {
@@ -197,6 +197,10 @@ namespace Alice
                 open = Other.open;
             }
 
+            /**
+             * @author John Patek
+             * @brief Destroys Socket, closing the Socket if necessary.
+             */
             ~Socket()
             {
                 if(open)
@@ -205,6 +209,13 @@ namespace Alice
                 }
             }
 
+            /**
+             * @author John Patek
+             * @brief Accept a connection on this Socket
+             * @exception ExceptionType::SocketAccept if the Socket fails to accept the connection
+             * @return A socket representing the newly accepted
+             * connection.
+             */
             Socket Accept() noexcept
             {
                 Socket client;
@@ -243,7 +254,15 @@ namespace Alice
                 }
                 return client;
             }
-
+            
+            /**
+             * @author John Patek
+             * @brief Bind Socket to a given port number
+             * @exception ExceptionType::SocketBind if port number
+             * is invalid or Socket fails to bind to it.
+             * @param[in] Port Desired port number Socket is to be
+             * bound to.
+             */
             void Bind(const u32 Port) noexcept
             {
                 s32 result(-1);
@@ -273,7 +292,13 @@ namespace Alice
                     port = Port;
                 }
             }
-
+            
+            /**
+             * @author John Patek
+             * @brief Close Socket
+             * @exception ExceptionType::SocketClose the if Socket is
+             * unable to close the underlying connection handle.
+             */
             void Close()
             {
                 if(open)
@@ -289,6 +314,15 @@ namespace Alice
                 }
             }
 
+            /**
+             * @author John Patek
+             * @brief Connect Socket to a given host and port number.
+             * @exception ExceptionType::SocketConnect if Socket is
+             * unable to connect to the given host and port.
+             * @param[in] Host IPv4 or IPv6 host. Must match domain.
+             * @param[in] Port port number to on which the connection
+             * is to be established.
+             */
             void Connect(const char* Host, const u32 Port) noexcept
             {
                 s32 result(-1);
