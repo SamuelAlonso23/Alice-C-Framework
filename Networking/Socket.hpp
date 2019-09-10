@@ -243,7 +243,7 @@ namespace Alice
                        &option,
                        (socklen_t*)&size) == -1)
                 {
-                    Exception::Raise(ExceptionType::SocketGetFlag);
+                    Exception::Raise(ExceptionType::SocketGetOption);
                 }
                 
                 return option;
