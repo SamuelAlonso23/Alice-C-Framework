@@ -1,4 +1,6 @@
 //Copyright Alice Framework, All Rights Reserved
+
+/** @file Inline.hpp */
 #pragma once
 
 #if defined(_MSC_VER)

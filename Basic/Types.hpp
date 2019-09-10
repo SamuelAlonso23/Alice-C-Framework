@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <cstddef>
 
+/** @file Types.hpp */
+
 typedef decltype(nullptr) NullPtrType;
 typedef std::ptrdiff_t PtrDiff;
 typedef std::uint8_t u8;

@@ -15,11 +15,16 @@
 #include <unistd.h>
 #endif
 
+/** @file Socket.hpp 
+ *  @brief Contains Socket class and all related functions and enums
+ *  @author John Patek
+ */
+
 namespace Alice
 {
     namespace Networking
     {
-        /** @enum Alice::Networking::SocketDomain
+        /** @enum SocketDomain
          * \author John Patek
          * @brief Strongly typed enum class representing the socket domain
          */
@@ -37,15 +42,15 @@ namespace Alice
          */
         enum class SocketType : u32
         {
-            /*! Provides sequenced, reliable, two-way, 
-                connection-based byte streams. */
+            /*! \hideinitializer Provides sequenced, reliable, 
+                two-way, connection-based byte streams. */
             Stream = SOCK_STREAM,
-            /*! Supports connectionless, unreliable messages of a 
-                fixed maximum length */
+            /*! \hideinitializer Supports connectionless, unreliable
+                 messages of a fixed maximum length */
             Datagram = SOCK_DGRAM,
-            /*! Provides a sequenced, reliable, two-way
-                connection-based data transmission path for datagrams
-                of fixed maximum length */
+            /*! \hideinitializer Provides a sequenced, reliable, 
+                two-way connection-based data transmission path for
+                datagrams of fixed maximum length */
             SequencePacket = SOCK_SEQPACKET
         };
 
@@ -146,14 +151,26 @@ namespace Alice
         };
         
         /** @class Alice::Networking::Socket
-         * \author John Patek
-         * @brief Class encapsulating an Alice styled a wrapper for a Unix socket
+         * @author John Patek
+         * @brief Class encapsulating an Alice styled a wrapper for a Unix socket.
          */
         class Socket
         {
         public:
+
+            /**
+             * @author John Patek
+             * @brief Constructs an uninitialized Socket 
+             * object.
+             */ 
             Socket() noexcept {}
 
+            /**
+             * @author John Patek
+             * @brief Constructs a Socket object given a domain and
+             * a type. Attempts to open Socket once it has been 
+             * created.
+             */ 
             Socket(
                 const SocketDomain& Domain,
                 const SocketType& Type) noexcept
@@ -161,8 +178,17 @@ namespace Alice
                 Open(Domain,Type);    
             }
 
+            /**
+             * @author John Patek
+             * @brief Overrides copy constructor, calling delete
+             * to prevent Socket from being copied.
+             */ 
             Socket(const Socket& Other) = delete;
 
+            /**
+             * @author John Patek
+             * @brief Constructs Socket from another Socket rvalue
+             */ 
             Socket(Socket&& Other) noexcept 
             {
                 socketfd = Other.socketfd;

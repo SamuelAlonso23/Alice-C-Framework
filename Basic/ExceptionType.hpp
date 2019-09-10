@@ -2,6 +2,8 @@
 #pragma once
 #include <Basic/Types.hpp>
 
+/** @file ExceptionType.hpp */
+
 enum class ExceptionType : u16
 {
     None,

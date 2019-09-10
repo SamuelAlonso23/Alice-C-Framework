@@ -4,6 +4,8 @@
 #include <Core/Forward.hpp>
 #include <Core/Exception.hpp>
 
+/** @file List.hpp */
+
 namespace Alice
 {
     namespace Collections
