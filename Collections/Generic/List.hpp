@@ -10,6 +10,10 @@ namespace Alice
     {
         namespace Generic
         {
+            /** @class Alice::Collections::Generics
+             * \author your name
+             * @brief description of this class
+             */
             template<class T> class List
             {
             private:
@@ -21,6 +25,8 @@ namespace Alice
 
                 bool readonly = false;
             public:
+
+                
                 AliceInline List() noexcept{}
 
                 AliceInline List(const std::initializer_list<T>&& il) noexcept : List<T>(il.size())

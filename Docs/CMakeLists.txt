@@ -1,0 +1,18 @@
+set(DOXYGEN_EXTRACT_ALL YES)
+set(DOXYGEN_BUILTIN_STL_SUPPORT YES)
+
+doxygen_add_docs(
+    Docs
+    ${CMAKE_CURRENT_SOURCE_DIR}/mainpage.md
+    ${PROJECT_SOURCE_DIR}/Basic/
+    ${PROJECT_SOURCE_DIR}/Collections/Generic/
+    ${PROJECT_SOURCE_DIR}/Concepts/
+    ${PROJECT_SOURCE_DIR}/Core/
+    ${PROJECT_SOURCE_DIR}/IO/
+    ${PROJECT_SOURCE_DIR}/Math/
+    ${PROJECT_SOURCE_DIR}/Memory/    
+    ${PROJECT_SOURCE_DIR}/Networking/
+    ${PROJECT_SOURCE_DIR}/System/
+    WORKING_DIRECTORY
+    ${PROJECT_SOURCE_DIR}
+)

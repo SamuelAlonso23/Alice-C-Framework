@@ -19,12 +19,20 @@ namespace Alice
 {
     namespace Networking
     {
+        /** @enum Alice::Networking::SocketDomain
+         * \author John Patek
+         * @brief Strongly typed enum class representing the socket domain
+         */
         enum class SocketDomain : u32
         {
             IPv4 = AF_INET,
             IPv6 = AF_INET6
         };
 
+        /** @enum Alice::Networking::SocketType
+         * \author John Patek
+         * @brief Strongly typed enum class representing the socket domain
+         */
         enum class SocketType : u32
         {
             Stream = SOCK_STREAM,
@@ -32,6 +40,10 @@ namespace Alice
             SequencePacket = SOCK_SEQPACKET
         };
 
+        /** @enum Alice::Networking::SocketOption
+         * \author John Patek
+         * @brief Strongly typed enum class representing the socket options
+         */
         enum class SocketOption : u32
         {
             Domain = SO_DOMAIN,
@@ -41,7 +53,11 @@ namespace Alice
             ReceiveBuffer = SO_RCVBUF,
             SendBuffer = SO_SNDBUF
         };
-
+        
+        /** @enum Alice::Networking::SocketFlag
+         * \author John Patek
+         * @brief Strongly typed enum class representing the socket flags
+         */
         enum class SocketFlag : u32
         {
             AcceptConnection = SO_ACCEPTCONN,
@@ -59,6 +75,10 @@ namespace Alice
             TimeStamp = SO_TIMESTAMP
         };
 
+        /** @enum Alice::Networking::SocketReceiveFlag
+         * \author John Patek
+         * @brief Strongly typed enum class representing the socket receive flags
+         */
         enum class SocketReceiveFlag : u32
         {
             DoNotWait = MSG_DONTWAIT,
@@ -69,6 +89,10 @@ namespace Alice
             WaitAll = MSG_WAITALL
         };
         
+        /** @enum Alice::Networking::SocketSendFlag
+         * \author John Patek
+         * @brief Strongly typed enum class representing the socket send flags
+         */
         enum class SocketSendFlag : u32
         {
             Confirm = MSG_CONFIRM,
@@ -79,7 +103,11 @@ namespace Alice
             NoSignal = MSG_NOSIGNAL,
             OutOfBand = MSG_OOB
         };
-
+        
+        /** @class Alice::Networking::Socket
+         * \author John Patek
+         * @brief Class encapsulating an Alice styled a wrapper for a Unix socket
+         */
         class Socket
         {
         public:
