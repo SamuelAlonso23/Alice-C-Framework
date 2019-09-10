@@ -43,19 +43,19 @@ namespace Alice
 
         enum class SocketFlag : u32
         {
-            AcceptConnection,
-            BindToDevice,
-            Broadcast,
-            Debug,
-            DoNotRoute,
-            KeepAlive,
-            Linger,
-            OutOfBandInline,
-            PassCredentials,
-            PeerCredentials,
-            ReuseAddress,
-            ReusePort,
-            TimeStamp
+            AcceptConnection = SO_ACCEPTCONN,
+            BindToDevice = SO_BINDTODEVICE,
+            Broadcast = SO_BROADCAST,
+            Debug = SO_DEBUG,
+            DoNotRoute = SO_DONTROUTE,
+            KeepAlive = SO_KEEPALIVE,
+            Linger = SO_LINGER,
+            OutOfBandInline = SO_OOBINLINE,
+            PassCredentials = SO_PASSCRED,
+            PeerCredentials = SO_PEERCRED,
+            ReuseAddress = SO_REUSEADDR,
+            ReusePort = SO_REUSEPORT,
+            TimeStamp = SO_TIMESTAMP
         };
 /**
         enum class SocketReceiveFlag : u32
@@ -215,12 +215,38 @@ namespace Alice
 
             bool GetFlag(const SocketFlag& Flag) const
             {
+                u32 flag(0);
+                u32 size = sizeof(Flag);
 
+                if(getsockopt(
+                       socketfd,
+                       SOL_SOCKET,
+                       static_cast<u32>(Flag),
+                       &flag,
+                       (socklen_t*)&size) == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketGetFlag);
+                }
+
+                return flag > 0;
             }
 
             u32 GetOption(const SocketOption& Option) const
             {
+                u32 option(0);
+                u32 size = sizeof(Option);
 
+                if(getsockopt(
+                       socketfd,
+                       SOL_SOCKET,
+                       static_cast<u32>(Option),
+                       &option,
+                       (socklen_t*)&size) == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketGetFlag);
+                }
+                
+                return option;
             }
 
             void Listen(u32 Backlog)
@@ -262,14 +288,31 @@ namespace Alice
                 return length;
             }
 
-            void SetFlag(const SocketFlag& flag, const bool Value)
+            void SetFlag(const SocketFlag& Flag, const bool Value)
             {
-
+                u32 value = Value ? 1 : 0;
+                if(setsockopt(
+                       socketfd, 
+                       SOL_SOCKET,
+                       static_cast<u32>(Flag),
+                       &value,
+                       sizeof(value)) == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketSetFlag);
+                }
             }
 
             void SetOption(const SocketOption& Option, const u32 Value)
             {
-
+                if(setsockopt(
+                       socketfd, 
+                       SOL_SOCKET, 
+                       static_cast<u32>(Option),
+                       &Value,
+                       sizeof(Value)) == -1)
+                {
+                    Exception::Raise(ExceptionType::SocketSetOption);
+                }
             }
 
             s32 Write(
