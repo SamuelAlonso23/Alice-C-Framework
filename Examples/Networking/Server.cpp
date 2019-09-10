@@ -20,6 +20,26 @@ int main(const int argc, const char** argv)
         return EXIT_FAILURE;
     }
 
+    ServerSocket.SetFlag(
+        Alice::Networking::SocketFlag::ReuseAddress, 
+        true);
+
+    if(Alice::Exception::Check(ExceptionType::SocketSetFlag))
+    {
+        std::cerr << "Socket Set ReuseAddress Flag" << std::endl;
+        return EXIT_FAILURE;    
+    }
+    
+    ServerSocket.SetFlag(
+        Alice::Networking::SocketFlag::ReusePort, 
+        true);
+
+    if(Alice::Exception::Check(ExceptionType::SocketSetFlag))
+    {
+        std::cerr << "Socket Set ReusePort Flag" << std::endl;
+        return EXIT_FAILURE;    
+    }
+
     ServerSocket.Bind(8080);
     
     if(Alice::Exception::Check(ExceptionType::SocketBind))

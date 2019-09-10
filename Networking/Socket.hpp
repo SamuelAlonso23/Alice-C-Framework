@@ -33,26 +33,29 @@ namespace Alice
 
         enum class SocketOption : u32
         {
-            Broadcast,
-            BSDCompat,
-            Debug,
-            Domain,
-            Error,
-            DoNotRoute,
-            KeepAlive,
-            Linger,
-            Mark,
-            OutOfBandInline,
-            PassCredentials,
-            PeerCredentials,
-            ReuseAddress,
-            ReusePort
+            Domain = SO_DOMAIN,
+            Error = SO_ERROR,
+            Mark = SO_MARK,
+            Priority = SO_PRIORITY,
+            ReceiveBuffer = SO_RCVBUF,
+            SendBuffer = SO_SNDBUF
         };
 
         enum class SocketFlag : u32
         {
             AcceptConnection,
             BindToDevice,
+            Broadcast,
+            Debug,
+            DoNotRoute,
+            KeepAlive,
+            Linger,
+            OutOfBandInline,
+            PassCredentials,
+            PeerCredentials,
+            ReuseAddress,
+            ReusePort,
+            TimeStamp
         };
 /**
         enum class SocketReceiveFlag : u32
