@@ -99,6 +99,11 @@ namespace Alice
             Pointer = nullptr;
         }
 
+        AliceInline ~UniquePtr() noexcept
+        {
+            delete[] ptr;
+        }
+
         AliceInline T*& operator->() noexcept
         {
             return *ptr;
