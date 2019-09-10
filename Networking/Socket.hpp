@@ -33,8 +33,6 @@ namespace Alice
 
         enum class SocketOption : u32
         {
-            /*AcceptConnection,
-            BindToDevice,
             Broadcast,
             BSDCompat,
             Debug,
@@ -47,9 +45,14 @@ namespace Alice
             OutOfBandInline,
             PassCredentials,
             PeerCredentials,
-            */
-           ReuseAddress,
-           ReusePort
+            ReuseAddress,
+            ReusePort
+        };
+
+        enum class SocketFlag : u32
+        {
+            AcceptConnection,
+            BindToDevice,
         };
 /**
         enum class SocketReceiveFlag : u32
@@ -207,6 +210,16 @@ namespace Alice
                 
             }
 
+            bool GetFlag(const SocketFlag& Flag) const
+            {
+
+            }
+
+            u32 GetOption(const SocketOption& Option) const
+            {
+
+            }
+
             void Listen(u32 Backlog)
             {
                 if(listen(socketfd, Backlog) == -1)
@@ -246,6 +259,16 @@ namespace Alice
                 return length;
             }
 
+            void SetFlag(const SocketFlag& flag, const bool Value)
+            {
+
+            }
+
+            void SetOption(const SocketOption& Option, const u32 Value)
+            {
+
+            }
+
             s32 Write(
                 const char* Buffer, 
                 u32 Length)
@@ -257,11 +280,6 @@ namespace Alice
                     return 0;
                 }
                 return length;
-            }
-
-            void SetOpt()
-            {
-
             }
 
             Socket& operator=(const Socket& rhs) = delete;
