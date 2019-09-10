@@ -25,7 +25,9 @@ namespace Alice
          */
         enum class SocketDomain : u32
         {
+            /*!\hideinitializer IPv4 Internet protocols */
             IPv4 = AF_INET,
+            /*!\hideinitializer IPv6 Internet protocols */
             IPv6 = AF_INET6
         };
 
@@ -35,8 +37,15 @@ namespace Alice
          */
         enum class SocketType : u32
         {
+            /*! Provides sequenced, reliable, two-way, 
+                connection-based byte streams. */
             Stream = SOCK_STREAM,
+            /*! Supports connectionless, unreliable messages of a 
+                fixed maximum length */
             Datagram = SOCK_DGRAM,
+            /*! Provides a sequenced, reliable, two-way
+                connection-based data transmission path for datagrams
+                of fixed maximum length */
             SequencePacket = SOCK_SEQPACKET
         };
 
@@ -46,11 +55,17 @@ namespace Alice
          */
         enum class SocketOption : u32
         {
+            /*! \hideinitializer */
             Domain = SO_DOMAIN,
+            /*! \hideinitializer */
             Error = SO_ERROR,
+            /*! \hideinitializer */
             Mark = SO_MARK,
+            /*! \hideinitializer */
             Priority = SO_PRIORITY,
+            /*! \hideinitializer */
             ReceiveBuffer = SO_RCVBUF,
+            /*! \hideinitializer */
             SendBuffer = SO_SNDBUF
         };
         
@@ -60,18 +75,31 @@ namespace Alice
          */
         enum class SocketFlag : u32
         {
+            /*! \hideinitializer */
             AcceptConnection = SO_ACCEPTCONN,
+            /*! \hideinitializer */
             BindToDevice = SO_BINDTODEVICE,
+            /*! \hideinitializer */
             Broadcast = SO_BROADCAST,
+            /*! \hideinitializer */
             Debug = SO_DEBUG,
+            /*! \hideinitializer */
             DoNotRoute = SO_DONTROUTE,
+            /*! \hideinitializer */
             KeepAlive = SO_KEEPALIVE,
+            /*! \hideinitializer */
             Linger = SO_LINGER,
+            /*! \hideinitializer */
             OutOfBandInline = SO_OOBINLINE,
+            /*! \hideinitializer */
             PassCredentials = SO_PASSCRED,
+            /*! \hideinitializer */
             PeerCredentials = SO_PEERCRED,
+            /*! \hideinitializer */
             ReuseAddress = SO_REUSEADDR,
+            /*! \hideinitializer */
             ReusePort = SO_REUSEPORT,
+            /*! \hideinitializer */
             TimeStamp = SO_TIMESTAMP
         };
 
@@ -81,11 +109,17 @@ namespace Alice
          */
         enum class SocketReceiveFlag : u32
         {
+            /*! \hideinitializer */
             DoNotWait = MSG_DONTWAIT,
+            /*! \hideinitializer */
             ErrorQueue = MSG_ERRQUEUE,
+            /*! \hideinitializer */
             OutOfBand = MSG_OOB,
+            /*! \hideinitializer */
             Peek = MSG_PEEK,
+            /*! \hideinitializer */
             Truncate = MSG_TRUNC,
+            /*! \hideinitializer */
             WaitAll = MSG_WAITALL
         };
         
@@ -95,12 +129,19 @@ namespace Alice
          */
         enum class SocketSendFlag : u32
         {
+            /*! \hideinitializer */
             Confirm = MSG_CONFIRM,
+            /*! \hideinitializer */
             DoNotRoute = MSG_DONTROUTE,
+            /*! \hideinitializer */
             DoNotWait = MSG_DONTWAIT,
+            /*! \hideinitializer */
             EndOfRecord = MSG_EOR,
+            /*! \hideinitializer */
             More = MSG_MORE,
+            /*! \hideinitializer */
             NoSignal = MSG_NOSIGNAL,
+            /*! \hideinitializer */
             OutOfBand = MSG_OOB
         };
         
