@@ -12,7 +12,7 @@ namespace Alice
     {
         namespace Generic
         {
-            /** @class Alice::Collections::Generics
+            /** @class Alice::Collections::Generic::List
              * \author your name
              * @brief description of this class
              */

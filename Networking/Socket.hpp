@@ -466,6 +466,16 @@ namespace Alice
                 return length;
             }
 
+            /**
+             * @author John Patek
+             * @brief Set flags for the Socket object.
+             * @exception ExceptionType::SocketSetFlag if Socket is
+             * unable to set the specific flag.
+             * @param[in] Flag SocketFlag to be set by the Socket
+             * object
+             * @param[in] Value bool value indicating if the flag is
+             * to be turned on or off
+             */
             void SetFlag(const SocketFlag& Flag, const bool Value)
             {
                 u32 value = Value ? 1 : 0;
@@ -480,6 +490,16 @@ namespace Alice
                 }
             }
 
+            /**
+             * @author John Patek
+             * @brief Set option values for the Socket object.
+             * @exception ExceptionType::SocketSetOption if Socket is
+             * unable to set the specific option.
+             * @param[in] Option SocketOption to be set by the Socket
+             * object
+             * @param[in] Value u32 value representing the integer
+             * value to be stored for this Socket option
+             */
             void SetOption(const SocketOption& Option, const u32 Value)
             {
                 if(setsockopt(
