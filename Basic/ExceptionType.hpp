@@ -2,12 +2,19 @@
 #pragma once
 #include <Basic/Types.hpp>
 
-/** @file ExceptionType.hpp */
-
 enum class ExceptionType : u16
 {
     None,
+    AppAlreadyLoaded,
+    MainWindowAlreadyLoaded,
+    MainWindowCannotBeRegistered,
+    MainWindowCannotBeCreated,
+    MainWindowDestroyFailed,
+    MainWindowUnregistrationFailed,
+    MainWindowResizeFailed,
+    MainWindowRelocationFailed,
     AppPathError,
+    AppCouldNotTerminate,
     TypeNotSupported,
     CpuIdNotSupported,
     IndexOverflow,
@@ -25,6 +32,13 @@ enum class ExceptionType : u16
     FileCouldNotBeWritten,
     MemoryAllocationFailed,
     LimitOverflow,
+    SocketInitializationFailed,
+    WindowRegistrationFailed,
+    WindowCreationFailed,
+    WindowDestroyFailed,
+    WindowUnregistrationFailed,
+    WindowRelocationFailed,
+    WindowResizeFailed,
     PngNoMagic,
     PngWrongHeaderSize,
     PngNoIHDR,
@@ -33,18 +47,7 @@ enum class ExceptionType : u16
     PngChunkUnderflow,
     PngChunkOverflow,
     PngUnsupportedChunk,
-    SocketAccept,
-    SocketBind,
-    SocketClose,
-    SocketConnect,
-    SocketGetFlag,
-    SocketGetOption,
-    SocketListen,
-    SocketOpen,
-    SocketRead,
-    SocketReceive,
-    SocketSend,
-    SocketSetFlag,
-    SocketSetOption,
-    SocketWrite
+    PngRepeatedPaletteChunk,
+    PngInvalidPaletteChunk,
+    
 };
