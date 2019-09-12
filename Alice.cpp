@@ -1,19 +1,13 @@
 //Copyright Alice Framework, All Rights Reserved
-#include <Core/App.hpp>
+#include <Core/MainWindow.hpp>
 
 #if defined(AliceWindows)
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
+    FreeConsole();
     AppInstance = hInstance;
-    Alice::App a();
+    Alice::MainWindow::Init();
+    Alice::MainWindow::End();
 }
-#elif defined(AliceMac)
-//Mac OS
-#elif defined(AliceLinux)
-int main(const int argc, const char ** argv)
-{
-    return 0;
-}
-#else
-#error "This system is not compatible with the Alice Framework"
+
 #endif
