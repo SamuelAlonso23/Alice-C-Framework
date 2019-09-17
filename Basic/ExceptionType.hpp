@@ -49,5 +49,18 @@ enum class ExceptionType : u16
     PngUnsupportedChunk,
     PngRepeatedPaletteChunk,
     PngInvalidPaletteChunk,
-    
+    SocketAccept,
+    SocketBind,
+    SocketClose,
+    SocketConnect,
+    SocketGetFlag,
+    SocketGetOption,
+    SocketListen,
+    SocketOpen,
+    SocketRead,
+    SocketReceive,
+    SocketSend,
+    SocketSetFlag,
+    SocketSetOption,
+    SocketWrite
 };

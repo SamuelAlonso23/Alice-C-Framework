@@ -79,6 +79,7 @@ namespace Alice
                 }
                 else
                     Exception::Raise(ExceptionType::WindowRegistrationFailed);
+                #elif defined(AliceLinux)
                 #endif
             }
 
