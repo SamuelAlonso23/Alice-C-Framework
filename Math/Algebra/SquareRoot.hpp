@@ -4,10 +4,20 @@
 #include <Basic/Inline.hpp>
 #include <Configuration.hpp>
 #if defined(AliceSse)
+#if defined(_MSC_VER)
+#include <intrin.h>
+#else
 #include <xmmintrin.h>
 #endif
+#endif
 #if defined(AliceSse2)
+#if defined(_MSC_VER)
+#if !defined(AliceSse)
+#include <intrin.h>
+#endif
+#else
 #include <emmintrin.h>
+#endif
 #endif
 
 namespace Alice
@@ -19,14 +29,23 @@ namespace Alice
             AliceInline f32 SquareRoot(f32 a) noexcept
             {
                 #if defined(AliceSse)
-                #if defined(AliceFastSqrt)
                 __m128 aa;
+                #if defined(AliceFastSqrt)
+                #if defined(_MSC_VER)
+                aa.m128_f32[0] = a;
+                return _mm_mul_ss(aa, _mm_rsqrt_ss(aa)).m128_f32[0];
+                #else
                 aa[0] = a;
                 return _mm_mul_ss(aa, _mm_rsqrt_ss(aa))[0];
+                #endif
                 #else
-                __m128 aa;
+                #if defined(_MSC_VER)
+                aa.m128_f32[0] = a;
+                return _mm_sqrt_ss(aa).m128_f32[0];
+                #else
                 aa[0] = a;
                 return _mm_sqrt_ss(aa)[0];
+                #endif
                 #endif
                 #else
                 union
@@ -46,8 +65,13 @@ namespace Alice
             {
                 #if defined(AliceSse2)
                 __m128d aa;
+                #if defined(_MSC_VER)
+                aa.m128d_f64[0] = a;
+                return _mm_sqrt_sd(aa, aa).m128d_f64[0];
+                #else
                 aa[0] = a;
                 return _mm_sqrt_sd(aa, aa)[0];
+                #endif
                 #else
                 return static_cast<f64>(SquareRoot(static_cast<f32>(a)));
                 #endif
