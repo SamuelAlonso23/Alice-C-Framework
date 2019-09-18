@@ -4,6 +4,8 @@
 
 Modern General Purpose C++ Framework (Clang & GCC Only)
 
+## Installing Alice on your System
+
 Linux:
 
 ```sh
@@ -12,7 +14,7 @@ cd Alice-C-Framework
 mkdir Build
 cd Build
 cmake ..
-make
+sudo make install
 ```
 
 Windows:
@@ -23,5 +25,14 @@ cd Alice-C-Framework
 mkdir Build
 cd Build
 cmake .. -G "MinGW Makefiles"
-make
+make install
+```
+
+## Building the Example Code
+
+Linux:
+
+```sh
+mkdir /tmp/Build
+cmake /usr/include
 ```

@@ -13,20 +13,55 @@ if(POLICY CMP0054)
   cmake_policy(SET CMP0054 NEW)
 endif()
 
-option(BUILD_DOCS "Generate documentation" OFF)
-option(BUILD_EXAMPLES "Build code examples" OFF)
-option(BUILD_TESTS "Build unit tests" OFF)
+option(DOCS "Generate documentation" OFF)
+option(EXAMPLES "Install code examples" ON)
+option(TESTS "Install unit tests" OFF)
 
-if(BUILD_DOCS)
+if(WIN32)
+    set(CMAKE_INSTALL_PREFIX "C:\\Program Files\\Alice")
+    set(CMAKE_INSTALL_ALICE ${CMAKE_INSTALL_PREFIX})
+    set(CMAKE_INSTALL_EXAMPLES ${CMAKE_INSTALL_ALICE})
+else()
+    set(CMAKE_INSTALL_PREFIX /usr/include/Alice)
+    set(CMAKE_INSTALL_ALICE /usr/share/doc/Alice)
+    set(CMAKE_INSTALL_EXAMPLES ${CMAKE_INSTALL_ALICE})
+endif()
+
+install(DIRECTORY 
+        Basic
+        Collections
+        Concepts
+        Core
+        Engine
+        IO
+        Math
+        Memory
+        Networking
+        System
+        Tests
+        UI
+        DESTINATION ${CMAKE_INSTALL_PREFIX})
+
+install(FILES
+        Configuration.hpp
+        Database.hpp
+        LICENSE
+        OS.hpp
+        README.md
+        DESTINATION ${CMAKE_INSTALL_PREFIX})
+
+if(DOCS)
     find_package(Doxygen)
     add_subdirectory(Docs)
 endif()
 
-if(BUILD_EXAMPLES)
-    add_subdirectory(Examples)
+if(EXAMPLES)
+install(DIRECTORY
+        Examples
+        DESTINATION ${CMAKE_INSTALL_ALICE})
 endif()
 
-if(BUILD_TESTS)
+if(TESTS)
     include(CTest)
     add_subdirectory(Tests)
 endif()

@@ -7,7 +7,7 @@ compiler:
 before_script:
   - mkdir build
   - cd build
-  - cmake .. -DBUILD_TESTS=ON
+  - cmake .. -DTESTS=ON
   - make
 
 script: ctest
