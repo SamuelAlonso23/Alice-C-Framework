@@ -20,12 +20,7 @@ sudo make install
 Windows:
 
 ```batch
-git clone https://github.com/AProgrammerFemale/Alice-C-Framework.git
-cd Alice-C-Framework
-mkdir Build
-cd Build
-cmake .. -G "MinGW Makefiles"
-make install
+
 ```
 
 ## Building the Example Code
