@@ -19,12 +19,12 @@ option(TESTS "Install unit tests" OFF)
 
 if(WIN32)
     set(CMAKE_INSTALL_PREFIX "C:\\Program Files\\Alice")
-    set(CMAKE_INSTALL_ALICE ${CMAKE_INSTALL_PREFIX})
-    set(CMAKE_INSTALL_EXAMPLES ${CMAKE_INSTALL_ALICE})
+    set(CMAKE_INSTALL_HEADERS ${CMAKE_INSTALL_PREFIX})
+    set(CMAKE_INSTALL_SHARE ${CMAKE_INSTALL_PREFIX})
 else()
-    set(CMAKE_INSTALL_PREFIX /usr/include/Alice)
-    set(CMAKE_INSTALL_ALICE /usr/share/doc/Alice)
-    set(CMAKE_INSTALL_EXAMPLES ${CMAKE_INSTALL_ALICE})
+    set(CMAKE_INSTALL_PREFIX /usr)
+    set(CMAKE_INSTALL_HEADERS ${CMAKE_INSTALL_PREFIX}/include/Alice)
+    set(CMAKE_INSTALL_SHARE ${CMAKE_INSTALL_PREFIX}/share/doc/Alice)
 endif()
 
 install(DIRECTORY 
@@ -40,15 +40,13 @@ install(DIRECTORY
         System
         Tests
         UI
-        DESTINATION ${CMAKE_INSTALL_PREFIX})
+        DESTINATION ${CMAKE_INSTALL_HEADERS})
 
 install(FILES
         Configuration.hpp
         Database.hpp
-        LICENSE
         OS.hpp
-        README.md
-        DESTINATION ${CMAKE_INSTALL_PREFIX})
+        DESTINATION ${CMAKE_INSTALL_HEADERS})
 
 if(DOCS)
     find_package(Doxygen)
@@ -58,7 +56,7 @@ endif()
 if(EXAMPLES)
 install(DIRECTORY
         Examples
-        DESTINATION ${CMAKE_INSTALL_ALICE})
+        DESTINATION ${CMAKE_INSTALL_SHARE})
 endif()
 
 if(TESTS)
